@@ -1,0 +1,19 @@
+.navbar-brand img {
+  width: 130px;
+}
+nav {
+  box-shadow: rgba(99, 99, 99, 0.1) 0px 2px 1px 0px;
+  background-color: #ffff;
+  /* background-color: rgba(48, 98, 217, 0.01); */
+  position: static;
+  top: 0
+}
+.navbar {
+  --bs-navbar-padding-x: 0;
+  --bs-navbar-padding-y: 0rem !important;
+}
+.nav-link {
+  font-family: "Poppins" !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+}
