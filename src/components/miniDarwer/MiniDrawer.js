@@ -29,6 +29,17 @@ import ProfessionalListing from '../../screens/professionalListing';
 import ClientListing from '../../screens/clientListing';
 import Collapse from '@mui/material/Collapse';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
+import CurrentlyActive from '../../screens/CurrentlyActive';
+import ClosedRequests from '../../screens/ClosedRequests';
+import HiredRequest from '../../screens/HiredRequest';
+import CustomerSupport from '../../screens/CustomerSupport';
+import { FaCodePullRequest } from "react-icons/fa6";
+import { MdOutlineOnlinePrediction } from 'react-icons/md';
+import { GoGitPullRequestClosed } from "react-icons/go";
+import { VscGitPullRequestCreate } from "react-icons/vsc";
+import { ImTicket } from "react-icons/im";
+import { TbTicketOff } from "react-icons/tb";
+
 
 
 const drawerWidth = 240;
@@ -125,9 +136,10 @@ export default function MiniDrawer() {
   };
 
   return (
-    <Box sx={{ display: 'flex', overflowX: 'hidden', width:'100%', height:'100vh', zIndex:100 }}>
-      <CssBaseline /> 
-      <AppBar position="fixed" open={open} className='BG-nav' sx={{ height: 60, backgroundColor:'white' }}>
+    <Box sx={{ display: 'flex', height: '130vh'}}>
+
+      <CssBaseline />
+      <AppBar position="fixed" open={open} className='BG-nav'>
         <Toolbar>
           <IconButton
             color="black"
@@ -135,7 +147,7 @@ export default function MiniDrawer() {
             onClick={handleDrawerOpen}
             edge="start"
             sx={{
-              marginRight: 5,
+              marginRight: '36px',
               ...(open && { display: 'none' }),
             }}
           >
@@ -177,14 +189,21 @@ export default function MiniDrawer() {
             { text: 'Client Listing', icon: <PersonIcon />, link: '/Admin/ClientListing' },
             {
               text: 'All Request',
-              icon: <ClearAllSharpIcon />,
+              icon: <FaCodePullRequest />,
               subMenu: [
-                { text: 'Currently Active', link: '/Admin/AllRequest/CurrentlyActive' },
-                { text: 'Closed Requests', link: '/Admin/AllRequest/ClosedRequests' },
-                { text: 'Hired Request', link: '/Admin/AllRequest/HiredRequest' },
+                { text: 'Currently Active',icon: <MdOutlineOnlinePrediction />, link: '/Admin/CurrentlyActive' },
+                { text: 'Closed Requests',icon: <GoGitPullRequestClosed />, link: '/Admin/ClosedRequests' },
+                { text: 'Hired Request', icon:<VscGitPullRequestCreate />,link: '/Admin/HiredRequest' },
               ],
             },
-            { text: 'Customer Support', icon: <SupportAgentSharpIcon /> },
+            { 
+              text: 'Customer Support', 
+              icon: <SupportAgentSharpIcon />, 
+              subMenu: [
+                { text: 'Open Ticket',icon: <ImTicket />,  link: '/Admin/OpenTicket' },
+                { text: 'Closed Ticket',icon: <TbTicketOff />,  link: '/Admin/ClosedTicket' },
+              ],
+            },
           ].map((item, index) => (
             <React.Fragment key={item.text}>
               <ListItem
@@ -206,7 +225,7 @@ export default function MiniDrawer() {
                   <ListItemIcon
                     sx={{
                       minWidth: 0,
-                      mr: open ? 3 : 'auto',
+                      mr: open ? 1.5 : 'auto',
                       justifyContent: 'center',
                     }}
                   >
@@ -220,11 +239,11 @@ export default function MiniDrawer() {
                       alignItems: 'center',
                     }}
                   />
-                  {item.subMenu && (
+                  {item.subMenu && open && ( // Render expand icons only if the drawer is open
                     <IconButton
                       sx={{ marginLeft: 'auto' }}
                       onClick={(e) => {
-                        e.stopPropagation(); 
+                        e.stopPropagation();
                         handleAllRequestClick();
                       }}
                     >
@@ -243,6 +262,9 @@ export default function MiniDrawer() {
                         onClick={() => handleItemClick(subItem.link)}
                       >
                         <ListItemButton sx={{ paddingLeft: 4 }}>
+                          <ListItemIcon>
+                            {subItem.icon}
+                          </ListItemIcon>
                           <ListItemText primary={subItem.text} />
                         </ListItemButton>
                       </ListItem>
@@ -252,19 +274,21 @@ export default function MiniDrawer() {
               )}
             </React.Fragment>
           ))}
+          
         </List>
         <Divider />
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3, transition: "margin-left 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",overflow: "hidden", }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 3, transition: "margin-left 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms", overflow: "hidden", }}>
         <DrawerHeader />
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/Dashboard" element={<Dashboard />} />
           <Route path='/ProfessionalListing' element={<ProfessionalListing />} />
           <Route path='/ClientListing' element={<ClientListing />} />
-          <Route path='/CurrentlyActive' element={<ClientListing />} /> 
-          <Route path='/ClosedRequests' element={<ClientListing />} /> 
-          <Route path='/HiredRequest' element={<ClientListing />} /> 
+          <Route path='/CurrentlyActive' element={<CurrentlyActive />} />
+          <Route path='/ClosedRequests' element={<ClosedRequests />} />
+          <Route path='/HiredRequest' element={<HiredRequest />} />
+
 
         </Routes>
       </Box>

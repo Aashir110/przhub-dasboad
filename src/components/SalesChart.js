@@ -4,7 +4,7 @@ import { Chart } from 'chart.js/auto';
 import TodaysSalesChart from './TodaysSalesChart'; 
 import YearlySalesPieChart from './YearlySalesPieChart';
 import { Grid } from '@mui/material';
-import Dashboard from '../screens/dashboard';
+
 
 
 const SalesChart = () => {

@@ -2,9 +2,7 @@ import Toolbar from "@mui/material/Toolbar";
 import {
   Typography,
   Paper,
-  Box,
-  Select,
-  MenuItem,
+  Box
 } from "@mui/material";
 
 // import {Grid} from "@mui/system/Unstable_Grid/Grid";
@@ -25,7 +23,7 @@ const Dashboard = ({ averageSales }) => {
 
   return (
     <div
-      style={{zIndex: 10009, backgroundColor: 'white'}}
+      
 
     >
       {/* Your dashboard content */}
@@ -50,8 +48,8 @@ const Dashboard = ({ averageSales }) => {
                 padding: "8px",
               }}
             >
-              <Typography variant="h6" style={{ color: "1769aa" }}>
-                <h3>Dashboard</h3>
+              <Typography variant="h4" style={{ color: "#1769aa" }}>
+                Dashboard
               </Typography>
             </div>
             <Grid container spacing={3}>
@@ -131,6 +129,7 @@ const Dashboard = ({ averageSales }) => {
             <Toolbar />
             <Box>
               <SalesChart />
+
             </Box>
           </main>
         </div>

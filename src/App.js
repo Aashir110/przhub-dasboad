@@ -17,25 +17,32 @@ import MiniDrawer from "./components/miniDarwer/MiniDrawer";
 function App() {
   return (
     <div>
-      {/* Dashboard rendered without Navbar and Footer */}
-
-       
       <Router>
-        {/* Navbar and other components inside the Router */}
-        <Navbar />   
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="Home" element={<Home />} />
-          <Route path="Login" element={<Login />} />
-          <Route path="Explore" element={<Explore />} />
-          <Route path="Service" element={<ServiceDetail />} />
-          <Route path="/componentScreen/:item" element={<ComponentScreen />} />
-          <Route path="/ViewAll/:title/:bg" element={<ViewAll />} />
+          {/* Admin routes without Navbar and Footer */}
           <Route path="/Admin/*" element={<MiniDrawer />} />
+
+          {/* Non-admin routes with Navbar and Footer */}
+          <Route
+            path="/*"
+            element={
+              <>
+                <Navbar />
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="Home" element={<Home />} />
+                  <Route path="Login" element={<Login />} />
+                  <Route path="Explore" element={<Explore />} />
+                  <Route path="Service" element={<ServiceDetail />} />
+                  <Route path="/componentScreen/:item" element={<ComponentScreen />} />
+                  <Route path="/ViewAll/:title/:bg" element={<ViewAll />} />
+                </Routes>
+                <Foooter />
+              </>
+            }
+          />
         </Routes>
-        <Foooter />  
       </Router>
-      
     </div>
   );
 }
